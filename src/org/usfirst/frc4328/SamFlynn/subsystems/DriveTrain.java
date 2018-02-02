@@ -15,6 +15,7 @@ import org.usfirst.frc4328.SamFlynn.Robot;
 import org.usfirst.frc4328.SamFlynn.RobotMap;
 import org.usfirst.frc4328.SamFlynn.commands.CurveDrive;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -31,10 +32,9 @@ public class DriveTrain extends Subsystem {
 
 	//Drive stuff
     private final SpeedController left1 = RobotMap.driveTrainLeft;
-    
     private final SpeedController right1 = RobotMap.driveTrainRight;
-    
-    private final DifferentialDrive driveTrain = RobotMap.driveTrain;
+
+	private final DifferentialDrive driveTrain = RobotMap.driveTrain;
     
     //Sesors
     private final Ultrasonic leftSonic = RobotMap.leftSonic;
@@ -42,8 +42,12 @@ public class DriveTrain extends Subsystem {
     
     private final Encoder leftEncoder = RobotMap.leftEncoder;
     private final Encoder rightEncoder = RobotMap.rightEncoder;
+    
+    private final AnalogGyro gyro = RobotMap.gyro;
 
+    //Servos
     private final Servo cameraServo = RobotMap.cameraServo;
+    
     
     @Override
     public void initDefaultCommand() {
@@ -103,6 +107,9 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Camera Slider Thing", Robot.oi.driver1.getRawAxis(3));
 	}
 
+	public double getGyroAngle() {
+		return gyro.getAngle();
+	}
 
 }
 
