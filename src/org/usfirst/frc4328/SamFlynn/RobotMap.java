@@ -53,9 +53,6 @@ public class RobotMap {
    
     public static Servo cameraServo;
     
-    public static AnalogGyro gyro;
-
-
     @SuppressWarnings("deprecation")
 	public static void init() {
     	
@@ -95,7 +92,5 @@ public class RobotMap {
         
         cameraServo = new Servo(8);
         
-        gyro = new AnalogGyro(8);
-
     }
 }

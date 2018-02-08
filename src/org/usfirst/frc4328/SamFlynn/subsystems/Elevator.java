@@ -24,7 +24,7 @@ public class Elevator extends Subsystem {
     }
     
     public void controlZ(){
-    	frontElevator.set(Robot.oi.driver2.getY());
+    	frontElevator.set(-Robot.oi.driver2.getY());
     }
 }
 

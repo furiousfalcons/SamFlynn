@@ -43,8 +43,6 @@ public class DriveTrain extends Subsystem {
     private final Encoder leftEncoder = RobotMap.leftEncoder;
     private final Encoder rightEncoder = RobotMap.rightEncoder;
     
-    private final AnalogGyro gyro = RobotMap.gyro;
-
     //Servos
     private final Servo cameraServo = RobotMap.cameraServo;
     
@@ -105,10 +103,6 @@ public class DriveTrain extends Subsystem {
 		cameraServo.setAngle((-1*(Robot.oi.driver1.getRawAxis(3))*22.5)+157.5);
 		SmartDashboard.putNumber("Camera Servo Angle", cameraServo.getAngle());
 		SmartDashboard.putNumber("Camera Slider Thing", Robot.oi.driver1.getRawAxis(3));
-	}
-
-	public double getGyroAngle() {
-		return gyro.getAngle();
 	}
 
 }
