@@ -27,13 +27,13 @@ public class DriveForwards extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		distance = 0.0;
-		Robot.driveTrain.getRightEncoder().reset();
-		initialRight = Robot.driveTrain.getRightEncoder().get();
+		Robot.driveTrain.getDriveEncoder().reset();
+		initialRight = Robot.driveTrain.getDriveEncoder().get();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		distance = Robot.driveTrain.getRightEncoder().get()-initialRight;
+		distance = Robot.driveTrain.getDriveEncoder().get()-initialRight;
 		Robot.driveTrain.normalDrive(speed, 0.0);
 	}
 

@@ -16,6 +16,7 @@ import org.usfirst.frc4328.SamFlynn.RobotMap;
 import org.usfirst.frc4328.SamFlynn.commands.CurveDrive;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -31,17 +32,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTrain extends Subsystem {
 
 	//Drive stuff
-    private final SpeedController left1 = RobotMap.driveTrainLeft;
-    private final SpeedController right1 = RobotMap.driveTrainRight;
+    private final SpeedController left = RobotMap.driveTrainLeft;
+    private final SpeedController right = RobotMap.driveTrainRight;
 
 	private final DifferentialDrive driveTrain = RobotMap.driveTrain;
     
     //Sesors
-    private final Ultrasonic leftSonic = RobotMap.leftSonic;
-    private final Ultrasonic rightSonic = RobotMap.rightSonic;
-    
-    private final Encoder leftEncoder = RobotMap.leftEncoder;
-    private final Encoder rightEncoder = RobotMap.rightEncoder;
+    private final Ultrasonic ultrasonic = RobotMap.ultrasonic;
+    private final AnalogGyro gyro = RobotMap.gyro;
+    private final Encoder driveEncoder = RobotMap.driveEncoder;
+    private final DigitalInput frontTrigger = RobotMap.frontTrigger;
+    private final DigitalInput frontTop = RobotMap.frontTop;
     
     //Servos
     private final Servo cameraServo = RobotMap.cameraServo;
@@ -83,26 +84,22 @@ public class DriveTrain extends Subsystem {
     	RobotMap.driveTrain.arcadeDrive(0.0,0.0);
     }
     
-    public double getLeftSonic() {
-    	return leftSonic.getRangeInches();
+    public double getUltrasonic() {
+    	return ultrasonic.getRangeInches();
     }
 
-    public double getRightSonic() {
-    	return rightSonic.getRangeInches();
-    }
-    
-	public Encoder getLeftEncoder() {
-		return leftEncoder;
-	}
-
-	public Encoder getRightEncoder() {
-		return rightEncoder;
+	public Encoder getDriveEncoder() {
+		return driveEncoder;
 	}
 	
 	public void moveCameraServo() {
 		cameraServo.setAngle((-1*(Robot.oi.driver1.getRawAxis(3))*22.5)+157.5);
 		SmartDashboard.putNumber("Camera Servo Angle", cameraServo.getAngle());
 		SmartDashboard.putNumber("Camera Slider Thing", Robot.oi.driver1.getRawAxis(3));
+	}
+	
+	public double getGyro() {
+		return gyro.getAngle();
 	}
 
 }

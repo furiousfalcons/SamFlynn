@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class SwitchRight extends CommandGroup {
+public class ScaleMiddle extends CommandGroup {
 
-    public SwitchRight() {
+    public ScaleMiddle() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

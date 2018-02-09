@@ -27,13 +27,13 @@ public class Rotate extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		distance = 0.0;
-		Robot.driveTrain.getRightEncoder().reset();
-		initialRight = Robot.driveTrain.getRightEncoder().get();
+		Robot.driveTrain.getDriveEncoder().reset();
+		initialRight = Robot.driveTrain.getDriveEncoder().get();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		distance = Math.abs(Robot.driveTrain.getRightEncoder().get()-initialRight);
+		distance = Math.abs(Robot.driveTrain.getDriveEncoder().get()-initialRight);
 		if(desiredDistance > 0)
 		Robot.driveTrain.normalDrive(0.0, speed);
 		else
