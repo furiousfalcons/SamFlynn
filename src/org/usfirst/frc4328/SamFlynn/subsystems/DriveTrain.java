@@ -93,7 +93,7 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void moveCameraServo() {
-		cameraServo.setAngle((-1*(Robot.oi.driver1.getRawAxis(3))*22.5)+157.5);
+		cameraServo.setAngle((-1*(Robot.oi.driver2.getRawAxis(2))*22.5)+157.5);
 		SmartDashboard.putNumber("Camera Servo Angle", cameraServo.getAngle());
 		SmartDashboard.putNumber("Camera Slider Thing", Robot.oi.driver1.getRawAxis(3));
 	}

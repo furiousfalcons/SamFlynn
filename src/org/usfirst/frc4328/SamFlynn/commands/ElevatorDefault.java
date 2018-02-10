@@ -22,12 +22,13 @@ public class ElevatorDefault extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(!Robot.oi.triggerD2.get())
     	Robot.elevator.controlZ();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.oi.triggerD2.get();
     }
 
     // Called once after isFinished returns true

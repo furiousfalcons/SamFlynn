@@ -1,5 +1,6 @@
 package org.usfirst.frc4328.SamFlynn.subsystems;
 
+import org.usfirst.frc4328.SamFlynn.Robot;
 import org.usfirst.frc4328.SamFlynn.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -23,7 +24,7 @@ public class CubeManipulator extends Subsystem {
 	}
 
 	public void beginIntake() {
-		cubeIntake.set(1.0);
+		cubeIntake.set(Robot.oi.driver1.getRawAxis(3));
 	}
 
 	public void spitCube() {

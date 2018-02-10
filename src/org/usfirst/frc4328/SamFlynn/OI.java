@@ -75,8 +75,8 @@ public class OI {
     	driver2 = new Joystick(1);
         
     	suckCubeBoi = new JoystickButton(driver1, 1);
-    	ejectButton = new JoystickButton(driver1, 8);
-    	driveNormalButton = new JoystickButton(driver1, 9);
+    	ejectButton = new JoystickButton(driver1, 11);
+    	driveNormalButton = new JoystickButton(driver1, 12);
     	
     	triggerD2 = new JoystickButton(driver2, 1);
     	
