@@ -24,7 +24,7 @@ public class CubeManipulator extends Subsystem {
 	}
 
 	public void beginIntake() {
-		cubeIntake.set(Robot.oi.driver1.getRawAxis(3));
+		cubeIntake.set(0.4);
 	}
 
 	public void spitCube() {

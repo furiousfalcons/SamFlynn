@@ -16,6 +16,7 @@ import org.usfirst.frc4328.SamFlynn.RobotMap;
 import org.usfirst.frc4328.SamFlynn.commands.CurveDrive;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Servo;
@@ -25,9 +26,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.IterativeRobot;
+
 
 /**
- *
+ Kim was here
  */
 public class DriveTrain extends Subsystem {
 
@@ -93,7 +99,18 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void moveCameraServo() {
-		cameraServo.setAngle((-1*(Robot.oi.driver2.getRawAxis(2))*22.5)+157.5);
+		//cameraServo.setAngle((-1*(Robot.oi.driver2.getRawAxis(2))*22.5)+157.5);
+		double cameraServoAngle = ((Robot.oi.driver2.getRawAxis(2) + 1) * 90);
+		cameraServo.setAngle(cameraServoAngle);
+		
+//		if (cameraServoAngle > 120) {
+//			//flip webcam upside down
+//			
+//		}
+//		else {
+//			//flip webcam rightside up
+//		}
+		
 		SmartDashboard.putNumber("Camera Servo Angle", cameraServo.getAngle());
 		SmartDashboard.putNumber("Camera Slider Thing", Robot.oi.driver1.getRawAxis(3));
 	}
