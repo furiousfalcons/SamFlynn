@@ -16,6 +16,8 @@ public class CubeManipulator extends Subsystem {
 	// here. Call these from Commands.
 
 	private static SpeedController cubeIntake = RobotMap.cubeIntake;
+	private static SpeedController intakeIncline = RobotMap.intakeIncline;
+
 	private static DigitalInput cubeLimit = RobotMap.cubeLimit;
 
 	public void initDefaultCommand() {
@@ -28,7 +30,7 @@ public class CubeManipulator extends Subsystem {
 	}
 
 	public void spitCube() {
-		cubeIntake.set(-1.0);
+		cubeIntake.set(-0.4);
 	}
 
 	public void stopIntake() {

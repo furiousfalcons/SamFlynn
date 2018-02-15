@@ -161,6 +161,7 @@ public class Robot extends TimedRobot {
 		// SmartDashboard.putNumber("Right Ultrasonic", driveTrain.getRightSonic());
 		// SmartDashboard.putNumber("Left Encoder", driveTrain.getLeftEncoder().get());
 		SmartDashboard.putNumber("Right Encoder", driveTrain.getDriveEncoder().get());
+		SmartDashboard.putData("Gyroscope", RobotMap.gyro);
 	}
 
 	public void determineAutonomous() {

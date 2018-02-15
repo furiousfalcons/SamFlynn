@@ -53,6 +53,9 @@ public class DriveTrain extends Subsystem {
     //Servos
     private final Servo cameraServo = RobotMap.cameraServo;
     
+    //Constant Variables
+    private final int cascadeSlowSpeed = 3;
+    
     
     @Override
     public void initDefaultCommand() {
@@ -71,19 +74,35 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
     
     public void curveDrive() {
-    	driveTrain.curvatureDrive(-Robot.oi.driver1.getY(), Robot.oi.driver1.getTwist(), Robot.oi.driver1.getTriggerPressed());
+    	if (Robot.oi.driver1.getRawButton(2)) {
+    		driveTrain.curvatureDrive((-Robot.oi.driver1.getY() / cascadeSlowSpeed), (Robot.oi.driver1.getTwist() / cascadeSlowSpeed), Robot.oi.driver1.getTriggerPressed());
+    	} else {
+    		driveTrain.curvatureDrive(-Robot.oi.driver1.getY(), Robot.oi.driver1.getTwist(), Robot.oi.driver1.getTriggerPressed());
+    	}
     }
     
     public void normalDrive() {
-    	driveTrain.arcadeDrive(-Robot.oi.driver1.getY(), Robot.oi.driver1.getTwist());
+        if (Robot.oi.driver1.getRawButton(2)) {
+        	driveTrain.arcadeDrive((-Robot.oi.driver1.getY() / cascadeSlowSpeed), (Robot.oi.driver1.getTwist() / cascadeSlowSpeed));
+        } else {
+    		driveTrain.arcadeDrive(-Robot.oi.driver1.getY(), Robot.oi.driver1.getTwist());
+        }
     }
     
     public void normalDrive(double y, double z) {
-    	driveTrain.arcadeDrive(y, z);
+    	if (Robot.oi.driver1.getRawButton(2)) {
+    		driveTrain.arcadeDrive((y / cascadeSlowSpeed), (z / cascadeSlowSpeed));
+    	} else {
+    		driveTrain.arcadeDrive(y, z);
+    	}
     }
     
     public void tankDrive(double leftSpeed, double rightSpeed) {
-    	driveTrain.tankDrive(leftSpeed, rightSpeed);
+    	if (Robot.oi.driver1.getRawButton(2)) {
+    		driveTrain.tankDrive((leftSpeed / cascadeSlowSpeed), (rightSpeed / cascadeSlowSpeed));
+    	} else {
+    		driveTrain.tankDrive(leftSpeed, rightSpeed);
+    	}
     }
     
     public void stop() {

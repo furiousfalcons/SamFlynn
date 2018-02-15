@@ -36,9 +36,7 @@ public class RobotMap {
     public static SpeedController frontElevator;
     public static SpeedController backElevator;
     
-    public static SpeedController squeezeServo;
-    public static SpeedController inclineServoLeft;
-    public static SpeedController inclineServoRight;
+    public static SpeedController intakeIncline;
     
     public static SpeedController cubeIntake;
     
@@ -77,12 +75,10 @@ public class RobotMap {
         cubeIntake = new Spark(3);
         
         frontElevator = new Spark(4);
+
+        intakeIncline = new Spark(5);
         
-        squeezeServo = new Spark(5);
-        inclineServoLeft = new Spark(6);
-        inclineServoLeft = new Spark(7);
-        
-        cameraServo = new Servo(8);
+        cameraServo = new Servo(6);
         
         //DIO
         frontTrigger = new DigitalInput(1);
@@ -100,6 +96,9 @@ public class RobotMap {
         
         //Analog
         gyro = new AnalogGyro(0);
+        gyro.initGyro();
+        gyro.calibrate();
+        gyro.reset();
         
     }
 }
