@@ -23,11 +23,16 @@ public class LiftDefault extends Command {
     protected void execute() {
     	if(Robot.oi.backLiftButtonD2.get())
     	Robot.lift.moveLift();
+    	
+    	if(Robot.oi.backWinchButton.get()){
+    		Robot.lift.climb();
+    	}
     }
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !Robot.oi.backLiftButtonD2.get();
+        return !(Robot.oi.backLiftButtonD2.get() || Robot.oi.backWinchButton.get());
     }
 
     // Called once after isFinished returns true

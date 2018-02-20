@@ -47,8 +47,6 @@ public class DriveTrain extends Subsystem {
     private final Ultrasonic ultrasonic = RobotMap.ultrasonic;
     private final AnalogGyro gyro = RobotMap.gyro;
     private final Encoder driveEncoder = RobotMap.driveEncoder;
-    private final DigitalInput frontTrigger = RobotMap.frontTrigger;
-    private final DigitalInput frontTop = RobotMap.frontTop;
     
     //Servos
     private final Servo cameraServo = RobotMap.cameraServo;
@@ -119,7 +117,7 @@ public class DriveTrain extends Subsystem {
 	
 	public void moveCameraServo() {
 		//cameraServo.setAngle((-1*(Robot.oi.driver2.getRawAxis(2))*22.5)+157.5);
-		double cameraServoAngle = ((Robot.oi.driver2.getRawAxis(2) + 1) * 90);
+		double cameraServoAngle = ((-Robot.oi.driver2.getRawAxis(2) + 1) * 90);
 		cameraServo.setAngle(cameraServoAngle);
 		
 //		if (cameraServoAngle > 120) {

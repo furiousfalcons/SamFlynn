@@ -15,10 +15,10 @@ public class Lift extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	private final DigitalInput backTrigger = RobotMap.backTrigger;
-	private final DigitalInput backTop = RobotMap.backTop;
+	  private final DigitalInput frontTop = RobotMap.frontTop;
 	
-	private final SpeedController backElevator = RobotMap.backElevator;
+	private final SpeedController backElevator = RobotMap.backWinchCarry;
+	private final SpeedController backWinch = RobotMap.backWinch;
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -26,11 +26,16 @@ public class Lift extends Subsystem {
     }
     
     public void moveLift() {
-    	backElevator.set(-Robot.oi.driver2.getY());
+    	backElevator.set(Robot.oi.driver2.getY()/2);
+    }
+    
+    public void climb(){
+    	backWinch.set(Robot.oi.driver2.getY());
     }
     
     public void stopLift() {
     	backElevator.set(0.0);
+    	backWinch.set(0.0);
     }
 }
 

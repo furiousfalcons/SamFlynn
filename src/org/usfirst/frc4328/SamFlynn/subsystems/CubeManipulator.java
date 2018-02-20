@@ -36,4 +36,8 @@ public class CubeManipulator extends Subsystem {
 	public void stopIntake() {
 		cubeIntake.set(0.0);
 	}
+
+	public boolean getCubeLimit() {
+		return cubeLimit.get();
+	}
 }

@@ -28,7 +28,7 @@ public class ElevatorDefault extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.oi.backLiftButtonD2.get();
+        return Robot.oi.backLiftButtonD2.get() || Robot.oi.backWinchButton.get();
     }
 
     // Called once after isFinished returns true
