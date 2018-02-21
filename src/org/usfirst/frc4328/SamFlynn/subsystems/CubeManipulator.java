@@ -26,6 +26,7 @@ public class CubeManipulator extends Subsystem {
 	}
 
 	public void beginIntake() {
+		if(!RobotMap.cubeLimit.get())
 		cubeIntake.set(0.4);
 	}
 

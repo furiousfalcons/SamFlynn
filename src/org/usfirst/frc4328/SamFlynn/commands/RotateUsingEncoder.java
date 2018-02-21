@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Rotate extends Command {
+public class RotateUsingEncoder extends Command {
 
 //	double initialLeft;
 	double initialRight;
@@ -16,7 +16,7 @@ public class Rotate extends Command {
 	double desiredDistance;
 	double speed;
 
-	public Rotate(double desiredDistance, double speed) {
+	public RotateUsingEncoder(double desiredDistance, double speed) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.driveTrain);

@@ -26,7 +26,7 @@ public class Lift extends Subsystem {
     }
     
     public void moveLift() {
-    	backElevator.set(Robot.oi.driver2.getY()/2);
+    	backElevator.set(Robot.oi.driver2.getY()/1.5);
     }
     
     public void climb(){

@@ -7,37 +7,47 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class EjectPowerCube extends Command {
+public class RotateUsingGyro extends Command {
 
-    public EjectPowerCube() {
+	double speed;
+	double degree;
+	
+    public RotateUsingGyro(double degree, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.cubeManipulator);
-    	setTimeout(2.0);
+    	requires(Robot.driveTrain);
+    	this.speed = speed;
+    	this.degree = degree;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.driveTrain.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.cubeManipulator.spitCube();
+    	if(degree > 0)
+    		Robot.driveTrain.normalDrive(0, speed);
+    	else
+    		Robot.driveTrain.normalDrive(0, -speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+    	if(degree > 0)
+    		return Robot.driveTrain.getGyro() >= degree;
+        
+        else
+        	return Robot.driveTrain.getGyro() <= degree;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.cubeManipulator.stopIntake();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

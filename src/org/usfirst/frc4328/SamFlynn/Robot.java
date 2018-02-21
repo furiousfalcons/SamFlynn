@@ -16,9 +16,9 @@ import org.usfirst.frc4328.SamFlynn.commands.AutoLR;
 import org.usfirst.frc4328.SamFlynn.commands.AutoRL;
 import org.usfirst.frc4328.SamFlynn.commands.AutoRM;
 import org.usfirst.frc4328.SamFlynn.commands.AutoRR;
-import org.usfirst.frc4328.SamFlynn.commands.DriveForwards;
+import org.usfirst.frc4328.SamFlynn.commands.DriveForwardsForTime;
+import org.usfirst.frc4328.SamFlynn.commands.NullAutonomous;
 import org.usfirst.frc4328.SamFlynn.commands.ScaleLeft;
-import org.usfirst.frc4328.SamFlynn.commands.ScaleMiddle;
 import org.usfirst.frc4328.SamFlynn.commands.ScaleRight;
 import org.usfirst.frc4328.SamFlynn.commands.TestAutonomous;
 import org.usfirst.frc4328.SamFlynn.subsystems.CubeManipulator;
@@ -26,11 +26,6 @@ import org.usfirst.frc4328.SamFlynn.subsystems.DriveTrain;
 import org.usfirst.frc4328.SamFlynn.subsystems.Elevator;
 import org.usfirst.frc4328.SamFlynn.subsystems.Lift;
 
-
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -88,6 +83,7 @@ public class Robot extends TimedRobot {
 		autoChooser.addDefault("Put cube in switch", new Integer(1));
 		autoChooser.addObject("Put cube in scale", new Integer(2));
 		autoChooser.addObject("Go forwards", new Integer(3));
+		autoChooser.addObject("Do nothing", new Integer(4));
 
 		autoPositionChooser.addDefault("Left", "Left");
 		autoPositionChooser.addObject("Middle", "Middle");
@@ -236,7 +232,7 @@ public class Robot extends TimedRobot {
 					break;
 
 				case "Middle":
-					autonomousCommand = new ScaleMiddle();
+					autonomousCommand = new NullAutonomous();
 					break;
 
 				case "Right":
@@ -244,7 +240,7 @@ public class Robot extends TimedRobot {
 					break;
 
 				default:
-					autonomousCommand = new TestAutonomous();
+					autonomousCommand = new NullAutonomous();
 					break;
 
 				}
@@ -253,7 +249,7 @@ public class Robot extends TimedRobot {
 			// If go straight forwards is selected
 			if (currentSelectedAuto.equals(3)) {
 				// drive forwards for 100 encoder distance
-				autonomousCommand = new DriveForwards(1635, 0.8);
+				autonomousCommand = new DriveForwardsForTime(10.0, 0.5);
 			}
 
 		}

@@ -135,6 +135,10 @@ public class DriveTrain extends Subsystem {
 	public double getGyro() {
 		return gyro.getAngle();
 	}
+	
+	public void resetGyro() {
+		gyro.reset();
+	}
 
 }
 

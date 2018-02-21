@@ -16,6 +16,7 @@ import org.usfirst.frc4328.SamFlynn.commands.IntakePowerCube;
 import org.usfirst.frc4328.SamFlynn.commands.LiftDefault;
 import org.usfirst.frc4328.SamFlynn.commands.NormalDrive;
 import org.usfirst.frc4328.SamFlynn.commands.ResetEncoders;
+import org.usfirst.frc4328.SamFlynn.commands.ResetGyro;
 import org.usfirst.frc4328.SamFlynn.commands.TestAutonomous;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -63,6 +64,7 @@ public class OI {
     public JoystickButton suckCubeBoi;
     public JoystickButton driveNormalButton;
     public JoystickButton ejectButton;
+    public JoystickButton resetButton;
     
     public JoystickButton backLiftButtonD2;
     public JoystickButton backWinchButton;
@@ -82,10 +84,12 @@ public class OI {
     	ejectButton = new JoystickButton(driver2, 2);
     	backLiftButtonD2 = new JoystickButton(driver2, 6);
     	backWinchButton = new JoystickButton(driver2, 11);
+    	resetButton = new JoystickButton(driver1, 7);
     	
     	driveNormalButton.whileHeld(new NormalDrive());
     	suckCubeBoi.whileHeld(new IntakePowerCube());
     	ejectButton.whileHeld(new EjectPowerCube());
+    	resetButton.whileHeld(new ResetGyro());
     	
     	backLiftButtonD2.whileHeld(new LiftDefault());
     	backWinchButton.whileHeld(new LiftDefault());

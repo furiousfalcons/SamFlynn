@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ScaleMiddle extends CommandGroup {
+public class NullAutonomous extends CommandGroup {
 
-    public ScaleMiddle() {
+    public NullAutonomous() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
