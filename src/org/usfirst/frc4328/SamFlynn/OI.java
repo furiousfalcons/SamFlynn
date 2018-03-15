@@ -65,8 +65,6 @@ public class OI {
     public JoystickButton driveNormalButton;
     public JoystickButton ejectButton;
     public JoystickButton resetButton;
-    
-    public JoystickButton backLiftButtonD2;
     public JoystickButton backWinchButton;
 
 
@@ -79,12 +77,11 @@ public class OI {
     	driver2 = new Joystick(1);
         
     	driveNormalButton = new JoystickButton(driver1, 1);
+    	resetButton = new JoystickButton(driver1, 7);
     	
     	suckCubeBoi = new JoystickButton(driver2, 1);
     	ejectButton = new JoystickButton(driver2, 2);
-    	backLiftButtonD2 = new JoystickButton(driver2, 6);
     	backWinchButton = new JoystickButton(driver2, 11);
-    	resetButton = new JoystickButton(driver1, 7);
     	
     	driveNormalButton.whileHeld(new NormalDrive());
     	suckCubeBoi.whileHeld(new IntakePowerCube());

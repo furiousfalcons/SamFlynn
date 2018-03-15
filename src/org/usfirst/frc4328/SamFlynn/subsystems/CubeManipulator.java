@@ -24,12 +24,12 @@ public class CubeManipulator extends Subsystem {
 	}
 
 	public void beginIntake() {
-		if(!RobotMap.cubeLimit.get())
-		cubeIntake.set(0.4);
+		if(RobotMap.cubeLimit.get())
+		cubeIntake.set(-0.6);
 	}
 
 	public void spitCube() {
-		cubeIntake.set(-0.4);
+		cubeIntake.set(1.0);
 	}
 
 	public void stopIntake() {
@@ -37,6 +37,6 @@ public class CubeManipulator extends Subsystem {
 	}
 
 	public boolean getCubeLimit() {
-		return cubeLimit.get();
+		return !cubeLimit.get();
 	}
 }
