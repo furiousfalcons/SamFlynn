@@ -1,7 +1,6 @@
 package org.usfirst.frc4328.SamFlynn.commands;
 
 import org.usfirst.frc4328.SamFlynn.Robot;
-import org.usfirst.frc4328.SamFlynn.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 

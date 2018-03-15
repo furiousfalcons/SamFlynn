@@ -11,9 +11,9 @@
 
 package org.usfirst.frc4328.SamFlynn;
 
+import org.usfirst.frc4328.SamFlynn.commands.ActivateWinch;
 import org.usfirst.frc4328.SamFlynn.commands.EjectPowerCube;
 import org.usfirst.frc4328.SamFlynn.commands.IntakePowerCube;
-import org.usfirst.frc4328.SamFlynn.commands.LiftDefault;
 import org.usfirst.frc4328.SamFlynn.commands.NormalDrive;
 import org.usfirst.frc4328.SamFlynn.commands.ResetEncoders;
 import org.usfirst.frc4328.SamFlynn.commands.ResetGyro;
@@ -91,8 +91,7 @@ public class OI {
     	ejectButton.whileHeld(new EjectPowerCube());
     	resetButton.whileHeld(new ResetGyro());
     	
-    	backLiftButtonD2.whileHeld(new LiftDefault());
-    	backWinchButton.whileHeld(new LiftDefault());
+    	backWinchButton.whileHeld(new ActivateWinch());
     	
 
         // SmartDashboard Buttons

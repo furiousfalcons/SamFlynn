@@ -1,7 +1,6 @@
 package org.usfirst.frc4328.SamFlynn.commands;
 
 import org.usfirst.frc4328.SamFlynn.Robot;
-import org.usfirst.frc4328.SamFlynn.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -22,18 +21,17 @@ public class ElevatorDefault extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!Robot.oi.backLiftButtonD2.get())
     	Robot.elevator.controlZ();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.oi.backLiftButtonD2.get() || Robot.oi.backWinchButton.get();
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.frontElevator.set(0.0);
+    	Robot.elevator.stopElevator();
     	
     }
 

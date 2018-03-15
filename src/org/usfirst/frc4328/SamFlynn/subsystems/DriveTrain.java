@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc4328.SamFlynn.subsystems;
 
 import org.usfirst.frc4328.SamFlynn.Robot;
@@ -16,8 +15,7 @@ import org.usfirst.frc4328.SamFlynn.RobotMap;
 import org.usfirst.frc4328.SamFlynn.commands.CurveDrive;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -26,119 +24,140 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.IterativeRobot;
-
-
 /**
- Kim was here
+ * Kim was here
  */
 public class DriveTrain extends Subsystem {
 
-	//Drive stuff
-    private final SpeedController left = RobotMap.driveTrainLeft;
-    private final SpeedController right = RobotMap.driveTrainRight;
+	// Drive stuff
+	private final SpeedController left = RobotMap.driveTrainLeft;
+	private final SpeedController right = RobotMap.driveTrainRight;
 
-	private final DifferentialDrive driveTrain = RobotMap.driveTrain;
-    
-    //Sesors
-    private final Ultrasonic ultrasonic = RobotMap.ultrasonic;
-    private final AnalogGyro gyro = RobotMap.gyro;
-    private final Encoder driveEncoder = RobotMap.driveEncoder;
-    
-    //Servos
-    private final Servo cameraServo = RobotMap.cameraServo;
-    
-    //Constant Variables
-    private final int cascadeSlowSpeed = 3;
-    
-    
-    @Override
-    public void initDefaultCommand() {
+	private final DifferentialDrive driveTrain = new DifferentialDrive(left,right);
 
-        // Set the default command for a subsystem here.
-        setDefaultCommand(new CurveDrive());
-    }
+	// Sesors
+	private final Ultrasonic ultrasonic = RobotMap.ultrasonic;
+	private final AnalogGyro gyro = RobotMap.gyro;
+	private final Encoder driveEncoder = RobotMap.driveEncoder;
+	private final BuiltInAccelerometer accelerometer = RobotMap.accelerometer;
 
-    @Override
-    public void periodic() {
-        // Put code here to be run every loop
+	// Servos
+	private final Servo cameraServo = RobotMap.cameraServo;
 
-    }
+	// Constant Variables
+	private final int cascadeSlowSpeed = 3;
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-    
-    public void curveDrive() {
-    	if (Robot.oi.driver1.getRawButton(2)) {
-    		driveTrain.curvatureDrive((-Robot.oi.driver1.getY() / cascadeSlowSpeed), (Robot.oi.driver1.getTwist() / cascadeSlowSpeed), Robot.oi.driver1.getTriggerPressed());
-    	} else {
-    		driveTrain.curvatureDrive(-Robot.oi.driver1.getY(), Robot.oi.driver1.getTwist(), Robot.oi.driver1.getTriggerPressed());
-    	}
-    }
-    
-    public void normalDrive() {
-        if (Robot.oi.driver1.getRawButton(2)) {
-        	driveTrain.arcadeDrive((-Robot.oi.driver1.getY() / cascadeSlowSpeed), (Robot.oi.driver1.getTwist() / cascadeSlowSpeed));
-        } else {
-    		driveTrain.arcadeDrive(-Robot.oi.driver1.getY(), Robot.oi.driver1.getTwist());
-        }
-    }
-    
-    public void normalDrive(double y, double z) {
-    	if (Robot.oi.driver1.getRawButton(2)) {
-    		driveTrain.arcadeDrive((y / cascadeSlowSpeed), (z / cascadeSlowSpeed));
-    	} else {
-    		driveTrain.arcadeDrive(y, z);
-    	}
-    }
-    
-    public void tankDrive(double leftSpeed, double rightSpeed) {
-    	if (Robot.oi.driver1.getRawButton(2)) {
-    		driveTrain.tankDrive((leftSpeed / cascadeSlowSpeed), (rightSpeed / cascadeSlowSpeed));
-    	} else {
-    		driveTrain.tankDrive(leftSpeed, rightSpeed);
-    	}
-    }
-    
-    public void stop() {
-    	RobotMap.driveTrain.arcadeDrive(0.0,0.0);
-    }
-    
-    public double getUltrasonic() {
-    	return ultrasonic.getRangeInches();
-    }
+	@Override
+	public void initDefaultCommand() {
+
+		// Set the default command for a subsystem here.
+		setDefaultCommand(new CurveDrive());
+	}
+
+	@Override
+	public void periodic() {
+		// Put code here to be run every loop
+
+	}
+
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
+
+	public void curveDrive() {
+		if (Robot.oi.driver1.getRawButton(2)) {
+			driveTrain.curvatureDrive((-Robot.oi.driver1.getY() / cascadeSlowSpeed),
+					(Robot.oi.driver1.getTwist() / cascadeSlowSpeed), Robot.oi.driver1.getTriggerPressed());
+		} else {
+			driveTrain.curvatureDrive(-Robot.oi.driver1.getY(), Robot.oi.driver1.getTwist(),
+					Robot.oi.driver1.getTriggerPressed());
+		}
+	}
+
+	public void normalDrive() {
+		if (Robot.oi.driver1.getRawButton(2)) {
+			driveTrain.arcadeDrive((-Robot.oi.driver1.getY() / cascadeSlowSpeed),
+					(Robot.oi.driver1.getTwist() / cascadeSlowSpeed));
+		} else {
+			driveTrain.arcadeDrive(-Robot.oi.driver1.getY(), Robot.oi.driver1.getTwist());
+		}
+	}
+
+	public void normalDrive(double y, double z) {
+		if (Robot.oi.driver1.getRawButton(2)) {
+			driveTrain.arcadeDrive((y / cascadeSlowSpeed), (z / cascadeSlowSpeed));
+		} else {
+			driveTrain.arcadeDrive(y, z);
+		}
+	}
+
+	public void tankDrive(double leftSpeed, double rightSpeed) {
+		if (Robot.oi.driver1.getRawButton(2)) {
+			driveTrain.tankDrive((leftSpeed / cascadeSlowSpeed), (rightSpeed / cascadeSlowSpeed));
+		} else {
+			driveTrain.tankDrive(leftSpeed, rightSpeed);
+		}
+	}
+
+	public void stop() {
+		RobotMap.driveTrain.arcadeDrive(0.0, 0.0);
+	}
+
+	public double getUltrasonic() {
+		return ultrasonic.getRangeInches();
+	}
 
 	public Encoder getDriveEncoder() {
 		return driveEncoder;
 	}
-	
+
 	public void moveCameraServo() {
-		//cameraServo.setAngle((-1*(Robot.oi.driver2.getRawAxis(2))*22.5)+157.5);
+		// cameraServo.setAngle((-1*(Robot.oi.driver2.getRawAxis(2))*22.5)+157.5);
 		double cameraServoAngle = ((-Robot.oi.driver2.getRawAxis(2) + 1) * 90);
 		cameraServo.setAngle(cameraServoAngle);
-		
-//		if (cameraServoAngle > 120) {
-//			//flip webcam upside down
-//			
-//		}
-//		else {
-//			//flip webcam rightside up
-//		}
-		
+
+		// if (cameraServoAngle > 120) {
+		// //flip webcam upside down
+		//
+		// }
+		// else {
+		// //flip webcam rightside up
+		// }
+
 		SmartDashboard.putNumber("Camera Servo Angle", cameraServo.getAngle());
 		SmartDashboard.putNumber("Camera Slider Thing", Robot.oi.driver1.getRawAxis(3));
 	}
-	
+
 	public double getGyro() {
 		return gyro.getAngle();
 	}
-	
+
 	public void resetGyro() {
 		gyro.reset();
 	}
+	
+	public double getDistance() {
+		
+		
+		
+		//start timer and ping accel every 0.1 seconds
+		Thread t = new Thread(() -> {
+			long lastTime = System.currentTimeMillis();
+			double time;
+            while (!Thread.interrupted()) {
+					// Not stuck anymore!
+            	
+            	time = (System.currentTimeMillis() - lastTime)/1000.0; // set time
+            	if(time > 0.1) {
+            		break;
+            	}
+            	//do thing here
+            	
+            	System.out.println(time);
+            }
+        });
+        t.start();
+		
+		return accelerometer.getZ();
+	}
 
 }
-

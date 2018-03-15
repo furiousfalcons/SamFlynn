@@ -1,6 +1,5 @@
 package org.usfirst.frc4328.SamFlynn.subsystems;
 
-import org.usfirst.frc4328.SamFlynn.Robot;
 import org.usfirst.frc4328.SamFlynn.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -16,7 +15,6 @@ public class CubeManipulator extends Subsystem {
 	// here. Call these from Commands.
 
 	private static SpeedController cubeIntake = RobotMap.cubeIntake;
-	private static SpeedController intakeIncline = RobotMap.intakeIncline;
 
 	private static DigitalInput cubeLimit = RobotMap.cubeLimit;
 

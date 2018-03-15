@@ -1,14 +1,13 @@
 package org.usfirst.frc4328.SamFlynn.commands;
 
 import org.usfirst.frc4328.SamFlynn.Robot;
-import org.usfirst.frc4328.SamFlynn.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveForwards extends Command {
+public class IgnoreMeUnlessYouFixTheEncoder_Rot extends Command {
 
 //	double initialLeft;
 	double initialRight;
@@ -16,7 +15,7 @@ public class DriveForwards extends Command {
 	double desiredDistance;
 	double speed;
 
-	public DriveForwards(double desiredDistance, double speed) {
+	public IgnoreMeUnlessYouFixTheEncoder_Rot(double desiredDistance, double speed) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.driveTrain);
@@ -33,13 +32,16 @@ public class DriveForwards extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		distance = Robot.driveTrain.getDriveEncoder().get()-initialRight;
-		Robot.driveTrain.normalDrive(speed, 0.0);
+		distance = Math.abs(Robot.driveTrain.getDriveEncoder().get()-initialRight);
+		if(desiredDistance > 0)
+		Robot.driveTrain.normalDrive(0.0, speed);
+		else
+			Robot.driveTrain.normalDrive(0.0,-speed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return distance >= desiredDistance;
+		return distance >= Math.abs(desiredDistance);
 	}
 
 	// Called once after isFinished returns true

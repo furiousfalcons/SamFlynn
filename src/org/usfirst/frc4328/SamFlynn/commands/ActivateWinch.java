@@ -7,37 +7,34 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftDefault extends Command {
+public class ActivateWinch extends Command {
 
-    public LiftDefault() {
+    public ActivateWinch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.lift);
+    	requires(Robot.winch);
+    	//possible fix to glitching elevator
+    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.backLiftButtonD2.get())
-    	Robot.lift.moveLift();
-    	
-    	if(Robot.oi.backWinchButton.get()){
-    		Robot.lift.climb();
-    	}
+    	Robot.winch.moveWinch();
     }
-    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !(Robot.oi.backLiftButtonD2.get() || Robot.oi.backWinchButton.get());
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.lift.stopLift();
+    	Robot.winch.stopWinch();
     }
 
     // Called when another command which requires one or more of the same

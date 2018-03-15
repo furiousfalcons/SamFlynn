@@ -24,8 +24,5 @@ public class AutoLM extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new DriveForwards(150.0,0.6));
-    	addSequential(new RotateUsingGyro(-45.0,0.6));
-    	addSequential(new DriveForwards(450.0,0.6));
     }
 }

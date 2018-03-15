@@ -24,7 +24,5 @@ public class AutoRM extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new DriveForwards(850.0,0.6));
-    	addSequential(new RotateUsingEncoder(255.0,0.6));
     }
 }
