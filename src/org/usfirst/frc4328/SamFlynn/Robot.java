@@ -16,6 +16,7 @@ import org.usfirst.frc4328.SamFlynn.commands.AutoLR;
 import org.usfirst.frc4328.SamFlynn.commands.AutoRL;
 import org.usfirst.frc4328.SamFlynn.commands.AutoRM;
 import org.usfirst.frc4328.SamFlynn.commands.AutoRR;
+import org.usfirst.frc4328.SamFlynn.commands.DriveAutoForwards;
 import org.usfirst.frc4328.SamFlynn.commands.DriveForwardsForTime;
 import org.usfirst.frc4328.SamFlynn.commands.NullAutonomous;
 import org.usfirst.frc4328.SamFlynn.commands.ScaleLeft;
@@ -158,6 +159,8 @@ public class Robot extends TimedRobot {
 		// SmartDashboard.putNumber("Left Encoder", driveTrain.getLeftEncoder().get());
 		SmartDashboard.putNumber("Right Encoder", driveTrain.getDriveEncoder().get());
 		SmartDashboard.putData("Gyroscope", RobotMap.gyro);
+		SmartDashboard.putBoolean("Cube", Robot.cubeManipulator.getCubeLimit());
+
 	}
 
 	public void determineAutonomous() {
@@ -249,7 +252,7 @@ public class Robot extends TimedRobot {
 			// If go straight forwards is selected
 			if (currentSelectedAuto.equals(3)) {
 				// drive forwards for 100 encoder distance
-				autonomousCommand = new DriveForwardsForTime(10.0, 0.5);
+				autonomousCommand = new DriveAutoForwards();
 			}
 
 		}

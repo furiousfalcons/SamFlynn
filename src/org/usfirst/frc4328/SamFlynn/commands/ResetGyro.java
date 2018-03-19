@@ -1,5 +1,6 @@
 package org.usfirst.frc4328.SamFlynn.commands;
 
+import org.usfirst.frc4328.SamFlynn.Robot;
 import org.usfirst.frc4328.SamFlynn.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,6 +13,7 @@ public class ResetGyro extends Command {
     public ResetGyro() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +27,7 @@ public class ResetGyro extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

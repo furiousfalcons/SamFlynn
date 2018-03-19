@@ -25,16 +25,7 @@ public class AutoLR extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	//drive forwards
-    	addSequential(new DriveForwardsForTime(150.0,0.6));
-    	//turn left
-    	addSequential(new RotateUsingGyro(-90,0.6));
-    	//drive forwards
-    	addSequential(new DriveForwardsForTime(350.0,0.6));
-    	//turn left
-    	addSequential(new RotateUsingGyro(-90, 0.6));
-    	//drive forwards and drop cube
-    	addSequential(new DriveForwardsForTime(150.0,0.6));
-    	addSequential(new EjectPowerCube());
+    	addSequential(new ResetGyro());
+    	addSequential(new DriveForwardsForTime(2.3, 0.7));
     }
 }

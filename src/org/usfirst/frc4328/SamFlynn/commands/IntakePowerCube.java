@@ -9,10 +9,19 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class IntakePowerCube extends Command {
 
+	double time;
+	
     public IntakePowerCube() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.cubeManipulator);
+    }
+    
+    public IntakePowerCube(double time) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.cubeManipulator);
+    	setTimeout(time);
     }
 
     // Called just before this Command runs the first time
@@ -26,7 +35,7 @@ public class IntakePowerCube extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.cubeManipulator.getCubeLimit();
+        return Robot.cubeManipulator.getCubeLimit() || isTimedOut();
     }
 
     // Called once after isFinished returns true
